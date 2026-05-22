@@ -13,9 +13,9 @@ export class ValidationError extends AppError {
   }
 }
 
-export class ForbiddenError extends AppError {
+export class Unauthorized extends AppError {
   constructor(message = '비밀번호가 일치하지 않습니다.') {
-    super(message, 403, 'FORBIDDEN'); // forbidden → FORBIDDEN
+    super(message, 401, 'UNAUTHORIZED'); //
   }
 }
 
