@@ -40,7 +40,21 @@ DATABASE_URL="postgresql://본인유저:본인비밀번호@localhost:5432/study_
 npm run prisma:migrate
 ```
 
-### 4. 개발 서버 실행
+### 4. 브랜치 생성
+
+작업할 기능에 맞춰 `dev` 브랜치에서 새 브랜치를 만들어 작업합니다.
+
+```bash
+git checkout dev
+git pull origin dev
+git checkout -b feature/{기능명}
+```
+
+브랜치 명명 규칙은 `feature/{기능명}` 으로 통일합니다.
+
+- 예 : `feature/init-setting`, `feature/habit-page`, `feature/seed`
+
+### 5. 개발 서버 실행
 
 ```bash
 npm run dev
