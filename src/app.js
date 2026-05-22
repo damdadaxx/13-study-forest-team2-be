@@ -17,9 +17,9 @@ app.get('/', (req, res) => {
 });
 
 // 라우터 마운트
-app.use('/api/v1/studies', studyRouter);
-app.use('/api/v1/studies/:studyId/emojis', emojiRouter);
-app.use('/api/v1/studies/:studyId/habits', habitRouter);
-app.use('/api/v1/focus', focusRouter);
+app.use('/studies', studyRouter);
+app.use('/studies/:studyId/emojis', emojiRouter);
+app.use('/studies/:studyId/habits', habitRouter);
+app.use('/focus', focusRouter);
 
 export default app;

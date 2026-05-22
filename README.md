@@ -19,22 +19,13 @@ cd 13-study-forest-team2-be
 npm install
 ```
 
-### 2. 환경 변수 설정
-
-```bash
-cp .env.example .env.development
-```
-
-`.env.development` 의 `DATABASE_URL` 을 본인 로컬 Postgres 정보로 수정.
-자세한 내용은 노션 [환경 변수 설정 가이드](https://www.notion.so/damdada/3667bbb8e517808cb1c4e0f2f074a440?source=copy_link) 참고.
-
-### 3. DB 마이그레이션
+### 2. DB 마이그레이션
 
 ```bash
 npm run prisma:migrate
 ```
 
-### 4. 개발 서버 실행
+### 3. 개발 서버 실행
 
 ```bash
 npm run dev

@@ -4,8 +4,8 @@
   "description": "공부의 숲 백엔드 (코드잇 FS-13 2팀)",
   "main": "src/server.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon src/server.js",
-    "start": "cross-env NODE_ENV=production node src/server.js",
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
     "seed": "node prisma/seed.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
@@ -39,7 +39,6 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "cross-env": "^10.1.0",
     "nodemon": "^3.1.14",
     "prettier": "^3.8.3",
     "prisma": "^6.19.3"
