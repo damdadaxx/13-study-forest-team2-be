@@ -1,0 +1,11 @@
+### 정상 응답 테스트
+GET http://localhost:3001/test/ok
+
+### 400 BAD_REQUEST 테스트
+GET http://localhost:3001/test/error
+
+### 404 NOT_FOUND 테스트
+GET http://localhost:3001/test/not-found-error
+
+### 500 INTERNAL_SERVER_ERROR 테스트
+GET http://localhost:3001/test/server-error
