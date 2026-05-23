@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+
+# environment variables - .env.example만 깃에 올라감
+.env
+.env.*
+!.env.example
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS
+.DS_Store
+
+# editor
+.vscode/
+.idea/
+
+# build output
+dist/
+build/
+
+# Prisma
+prisma/migrations/dev.db*
+
+/src/generated/prisma
