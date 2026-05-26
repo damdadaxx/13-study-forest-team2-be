@@ -58,8 +58,8 @@ model Habit {
   updatedAt DateTime  @updatedAt
 
   // 관계 설정
-  study   Study         @relation(fields: [studyId], references: [id], onDelete: Cascade)
-  records HabitRecord[]
+  study        Study         @relation(fields: [studyId], references: [id], onDelete: Cascade)
+  habitRecords HabitRecord[]
 
   @@unique([studyId, content, deletedAt])
   @@map("habits")
