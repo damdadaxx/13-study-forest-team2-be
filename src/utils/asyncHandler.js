@@ -27,6 +27,16 @@ export const asyncHandler = (handler) => {
         });
       }
 
+      // 피드백 반영: P2003(외래 키 제약 위반) 추가
+      // errorHandler.js 분리는 아직 깊게 배우지 않았으므로 현재는 asyncHandler에서 임시 처리)
+      if (error?.code === 'P2003') {
+        return res.status(400).json({
+          success: false,
+          message: '잘못된 참조입니다. 관련된 상위 데이터가 존재하지 않습니다.',
+          code: 'FOREIGN_KEY_FAILED', // 일관성 위해 추가하였고 error meta는 포함안하였습니다.
+        });
+      }
+
       console.error('Unexpected Error:', error);
       return res.status(500).json({
         success: false,

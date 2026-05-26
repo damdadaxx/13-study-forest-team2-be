@@ -1,11 +1,16 @@
+@baseUrl = http://localhost:3001
+
 ### 정상 응답 테스트
-GET http://localhost:3001/test/ok
+GET {{baseUrl}}/test/ok
 
 ### 400 BAD_REQUEST 테스트
-GET http://localhost:3001/test/error
+GET {{baseUrl}}/test/error
 
 ### 404 NOT_FOUND 테스트
-GET http://localhost:3001/test/not-found-error
+GET {{baseUrl}}/test/not-found-error
 
 ### 500 INTERNAL_SERVER_ERROR 테스트
-GET http://localhost:3001/test/server-error
+GET {{baseUrl}}/test/server-error
+
+### 400 FOREIGN_KEY_FAILED 테스트
+GET {{baseUrl}}/test/foreign-key-error
