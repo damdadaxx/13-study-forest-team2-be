@@ -1,4 +1,4 @@
-export const asyncHandler = (handler) => {
+const asyncHandler = (handler) => {
   return async (req, res, next) => {
     try {
       await handler(req, res, next);
@@ -32,7 +32,7 @@ export const asyncHandler = (handler) => {
       if (error?.code === 'P2003') {
         return res.status(400).json({
           success: false,
-          message: '잘못된 참조입니다. 관련된 상위 데이터가 존재하지 않습니다.',
+          message: '참조하는 데이터가 존재하지 않습니다.',
           code: 'FOREIGN_KEY_FAILED', // 일관성 위해 추가하였고 error meta는 포함안하였습니다.
         });
       }
