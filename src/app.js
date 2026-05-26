@@ -4,6 +4,7 @@ import studyRouter from './routes/study.routes.js';
 import emojiRouter from './routes/emoji.routes.js';
 import habitRouter from './routes/habit.routes.js';
 import focusRouter from './routes/focus.routes.js';
+import testRouter from './routes/test.routes.js';
 
 const app = express();
 
@@ -21,5 +22,6 @@ app.use('/studies', studyRouter);
 app.use('/studies/:studyId/emojis', emojiRouter);
 app.use('/studies/:studyId/habits', habitRouter);
 app.use('/focus', focusRouter);
+app.use('/test', testRouter);
 
 export default app;
