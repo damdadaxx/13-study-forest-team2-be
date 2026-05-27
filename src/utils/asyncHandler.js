@@ -1,8 +1,18 @@
+import { ZodError } from 'zod';
+
 const asyncHandler = (handler) => {
   return async (req, res, next) => {
     try {
       await handler(req, res, next);
     } catch (error) {
+      if (error instanceof ZodError) {
+        return res.status(400).json({
+          success: false,
+          message: error.issues[0].message,
+          code: 'BAD_REQUEST',
+        });
+      }
+
       if (error?.isOperational) {
         return res.status(error.status).json({
           success: false,

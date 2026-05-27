@@ -1,5 +1,6 @@
 import express from 'express';
 import asyncHandler from '../utils/asyncHandler.js';
+import runZodTest from '../controllers/test.controller.js';
 import { ValidationError, NotFoundError } from '../utils/errors.js';
 
 const router = express.Router();
@@ -44,5 +45,7 @@ router.get(
     throw error;
   }),
 );
+
+router.post('/zod', runZodTest);
 
 export default router;
