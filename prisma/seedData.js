@@ -1,0 +1,782 @@
+export const studies = [
+  {
+    nickname: '민준',
+    title: '새벽스터디',
+    description: '새벽 스터디 설명입니다.',
+    background: 'img1',
+    password: 'password1!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: false, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: false, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '🔥', count: 3 },
+        { emoji: '💪', count: 2 },
+        { emoji: '👍', count: 1 },
+      ],
+    },
+  },
+  {
+    nickname: '서연',
+    title: '독서모임',
+    description: '독서 스터디 설명입니다.',
+    background: 'img2',
+    password: 'readBook2!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: false, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '📚', count: 5 },
+        { emoji: '⭐', count: 3 },
+        { emoji: '😊', count: 2 },
+      ],
+    },
+  },
+  {
+    nickname: '지호',
+    title: '코딩클럽',
+    description: '코딩 스터디 설명입니다.',
+    background: 'img3',
+    password: 'coding123!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: false, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '💻', count: 4 },
+        { emoji: '🔥', count: 3 },
+        { emoji: '🎯', count: 2 },
+      ],
+    },
+  },
+  {
+    nickname: '하은',
+    title: '영어회화',
+    description: '영어 스터디 설명입니다.',
+    background: 'img4',
+    password: 'english4!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: false, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '🌍', count: 6 },
+        { emoji: '💬', count: 4 },
+        { emoji: '👏', count: 2 },
+      ],
+    },
+  },
+  {
+    nickname: '준서',
+    title: '수학왕',
+    description: '수학 스터디 설명입니다.',
+    background: 'img5',
+    password: 'mathking5!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: false, date: new Date('2026-05-25') },
+              { isChecked: false, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: false, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '🧮', count: 3 },
+        { emoji: '📝', count: 2 },
+        { emoji: '💡', count: 1 },
+      ],
+    },
+  },
+  {
+    nickname: '수아',
+    title: '토익준비',
+    description: '토익 스터디 설명입니다.',
+    background: 'img6',
+    password: 'toeic678!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: false, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '📖', count: 5 },
+        { emoji: '✏️', count: 3 },
+        { emoji: '🏆', count: 2 },
+      ],
+    },
+  },
+  {
+    nickname: '도윤',
+    title: '헬스메이트',
+    description: '헬스 스터디 설명입니다.',
+    background: 'img7',
+    password: 'health77!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: false, date: new Date('2026-05-25') },
+              { isChecked: false, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '💪', count: 7 },
+        { emoji: '🏋️', count: 4 },
+        { emoji: '🔥', count: 3 },
+      ],
+    },
+  },
+  {
+    nickname: '예은',
+    title: '그림일기',
+    description: '그림 스터디 설명입니다.',
+    background: 'img8',
+    password: 'drawing8!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: false, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: false, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '🎨', count: 4 },
+        { emoji: '🖌️', count: 3 },
+        { emoji: '😍', count: 2 },
+      ],
+    },
+  },
+  {
+    nickname: '시우',
+    title: '기타연습',
+    description: '기타 스터디 설명입니다.',
+    background: 'img8',
+    password: 'guitar99!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: false, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '🎸', count: 5 },
+        { emoji: '🎵', count: 3 },
+        { emoji: '👏', count: 1 },
+      ],
+    },
+  },
+  {
+    nickname: '채원',
+    title: '요리왕',
+    description: '요리 스터디 설명입니다.',
+    background: 'img1',
+    password: 'cooking10!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: false, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '🍳', count: 4 },
+        { emoji: '👨‍🍳', count: 3 },
+        { emoji: '😋', count: 2 },
+      ],
+    },
+  },
+  {
+    nickname: '현우',
+    title: '주식공부',
+    description: '주식 스터디 설명입니다.',
+    background: 'img1',
+    password: 'stock111!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: false, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '📈', count: 6 },
+        { emoji: '💰', count: 4 },
+        { emoji: '🧠', count: 2 },
+      ],
+    },
+  },
+  {
+    nickname: '나은',
+    title: '필라테스',
+    description: '필라테스 스터디 설명입니다.',
+    background: 'img2',
+    password: 'pilates12!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: false, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: false, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '🧘', count: 5 },
+        { emoji: '💆', count: 3 },
+        { emoji: '✨', count: 2 },
+      ],
+    },
+  },
+  {
+    nickname: '태양',
+    title: '사진찍기',
+    description: '사진 스터디 설명입니다.',
+    background: 'img3',
+    password: 'photo133!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: false, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '📷', count: 6 },
+        { emoji: '🌅', count: 3 },
+        { emoji: '😎', count: 1 },
+      ],
+    },
+  },
+  {
+    nickname: '린',
+    title: '일본어',
+    description: '일본어 스터디 설명입니다.',
+    background: 'img4',
+    password: 'japanese!1',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: false, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '🇯🇵', count: 4 },
+        { emoji: '✏️', count: 3 },
+        { emoji: '📝', count: 2 },
+      ],
+    },
+  },
+  {
+    nickname: '우진',
+    title: '독립영화',
+    description: '영화 스터디 설명입니다.',
+    background: 'img5',
+    password: 'movie155!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: false, date: new Date('2026-05-25') },
+              { isChecked: false, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '🎬', count: 5 },
+        { emoji: '🍿', count: 4 },
+        { emoji: '🎭', count: 2 },
+      ],
+    },
+  },
+  {
+    nickname: '소율',
+    title: '미술관람',
+    description: '미술 스터디 설명입니다.',
+    background: 'img6',
+    password: 'artlover6!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: false, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '🖼️', count: 4 },
+        { emoji: '🎨', count: 3 },
+        { emoji: '✨', count: 1 },
+      ],
+    },
+  },
+  {
+    nickname: '건후',
+    title: '드럼연습',
+    description: '드럼 스터디 설명입니다.',
+    background: 'img7',
+    password: 'drumbeat7!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: false, date: new Date('2026-05-25') },
+              { isChecked: false, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '🥁', count: 5 },
+        { emoji: '🎵', count: 3 },
+        { emoji: '🔥', count: 2 },
+      ],
+    },
+  },
+  {
+    nickname: '아인',
+    title: '중국어',
+    description: '중국어 스터디 설명입니다.',
+    background: 'img8',
+    password: 'chinese8!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: false, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '🇨🇳', count: 4 },
+        { emoji: '📚', count: 3 },
+        { emoji: '💬', count: 2 },
+      ],
+    },
+  },
+  {
+    nickname: '하율',
+    title: '요가',
+    description: '요가 스터디 설명입니다.',
+    background: 'img6',
+    password: 'yogalife9!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: false, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: false, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '🧘', count: 6 },
+        { emoji: '🌿', count: 3 },
+        { emoji: '💚', count: 2 },
+      ],
+    },
+  },
+  {
+    nickname: '지안',
+    title: '피아노',
+    description: '피아노 스터디 설명입니다.',
+    background: 'img3',
+    password: 'piano100!',
+    totalPoint: 0,
+    habits: {
+      create: [
+        {
+          content: '습관1',
+          habitRecords: {
+            create: [
+              { isChecked: true, date: new Date('2026-05-24') },
+              { isChecked: false, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+        {
+          content: '습관2',
+          habitRecords: {
+            create: [
+              { isChecked: false, date: new Date('2026-05-24') },
+              { isChecked: true, date: new Date('2026-05-25') },
+              { isChecked: true, date: new Date('2026-05-26') },
+            ],
+          },
+        },
+      ],
+    },
+    emojis: {
+      create: [
+        { emoji: '🎹', count: 5 },
+        { emoji: '🎵', count: 3 },
+        { emoji: '✨', count: 2 },
+      ],
+    },
+  },
+];
