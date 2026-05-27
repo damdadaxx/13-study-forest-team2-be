@@ -315,7 +315,7 @@ export const studies = [
     nickname: '시우',
     title: '기타연습',
     description: '기타 스터디 설명입니다.',
-    background: 'img9',
+    background: 'img8',
     password: 'guitar99!',
     totalPoint: 0,
     habits: {
@@ -354,7 +354,7 @@ export const studies = [
     nickname: '채원',
     title: '요리왕',
     description: '요리 스터디 설명입니다.',
-    background: 'img10',
+    background: 'img1',
     password: 'cooking10!',
     totalPoint: 0,
     habits: {
@@ -705,7 +705,7 @@ export const studies = [
     nickname: '하율',
     title: '요가',
     description: '요가 스터디 설명입니다.',
-    background: 'img9',
+    background: 'img6',
     password: 'yogalife9!',
     totalPoint: 0,
     habits: {
@@ -744,7 +744,7 @@ export const studies = [
     nickname: '지안',
     title: '피아노',
     description: '피아노 스터디 설명입니다.',
-    background: 'img10',
+    background: 'img3',
     password: 'piano100!',
     totalPoint: 0,
     habits: {
