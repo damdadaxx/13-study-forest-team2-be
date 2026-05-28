@@ -93,7 +93,7 @@ export const updateStudySchema = z
   .refine((data) => {
     const { password, ...rest } = data;
     return Object.values(rest).some((v) => v !== undefined);
-  }, '수정사항이 하나라도 존재해야 합니다');
+  }, '수정사항이 존재하지 않습니다');
 
 export const deleteStudySchema = z.object({
   password: z
