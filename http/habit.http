@@ -65,3 +65,14 @@ Content-Type: application/json
 {
     "isChecked": true
 }
+
+### 10. 잘못된 studyId (숫자 아님) -> 400 BAD_REQUEST
+GET {{baseUrl}}/studies/abc/habits
+
+### 11. 없는 스터디로 체크 토글 -> 404 "스터디를 찾을 수 없습니다."
+PATCH {{baseUrl}}/studies/{{errorId}}/habits/{{habitId}}/check
+Content-Type: application/json
+
+{
+    "isChecked": true
+}

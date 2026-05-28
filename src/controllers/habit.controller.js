@@ -2,11 +2,16 @@ import prisma from '../lib/prisma.js';
 import asyncHandler from '../utils/asyncHandler.js';
 import { NotFoundError } from '../utils/errors.js';
 import { getTodayKst, toDateString } from '../utils/date.js';
-import { checkHabitSchema } from '../schemas/habit.schema.js';
+import {
+  checkHabitSchema,
+  habitListParamsSchema,
+  habitCheckParamsSchema,
+} from '../schemas/habit.schema.js';
 
 // GET /studies/:studyId/habits - 오늘의 습관 목록 + 체크 상태 조회
 export const getHabits = asyncHandler(async (req, res) => {
-  const studyId = Number(req.params.studyId);
+  // params 검증 - studyId 가 양의 정수인지
+  const { studyId } = habitListParamsSchema.parse(req.params);
   const today = getTodayKst();
 
   // 스터디 존재 검증
@@ -45,12 +50,18 @@ export const getHabits = asyncHandler(async (req, res) => {
 
 // PATCH /studies/:studyId/habits/:habitId/check - 오늘 자 체크 상태 설정
 export const toggleHabitCheck = asyncHandler(async (req, res) => {
-  const studyId = Number(req.params.studyId);
-  const habitId = Number(req.params.habitId);
+  // params 검증 - studyId, habitId 가 양의 정수인지
+  const { studyId, habitId } = habitCheckParamsSchema.parse(req.params);
   const today = getTodayKst();
 
   // 바디 검증 - { isChecked: boolean }
   const { isChecked } = checkHabitSchema.parse(req.body);
+
+  // 스터디 존재 검증 ( getHabits 와 동일하게 - 리뷰 피드백 반영 )
+  const study = await prisma.study.findUnique({ where: { id: studyId } });
+  if (!study) {
+    throw new NotFoundError('스터디를 찾을 수 없습니다.');
+  }
 
   // 이 스터디에 속한 활성 습관인지 확인
   const habit = await prisma.habit.findFirst({
