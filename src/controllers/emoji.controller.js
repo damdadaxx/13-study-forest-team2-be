@@ -1,36 +1,24 @@
 import prisma from '../lib/prisma.js';
-import { upsertEmojiSchema } from '../schemas/emoji.schema.js';
+import {
+  emojiParamsSchema,
+  upsertEmojiSchema,
+} from '../schemas/emoji.schema.js';
 import asyncHandler from '../utils/asyncHandler.js';
 import { NotFoundError, ValidationError } from '../utils/errors.js';
 
-// 스터디 ID 유효성 체크
-const isValidStudyId = async (studyId) => {
-  const parsedStudyId = parseInt(studyId);
-
-  if (isNaN(parsedStudyId)) {
-    throw new ValidationError('스터디 ID는 숫자여야 합니다.', 'BAD_REQUEST');
-  }
-
-  const countStudyId = await prisma.emoji.count({
-    where: { studyId: parsedStudyId },
-  });
-
-  if (countStudyId === 0) {
-    throw new NotFoundError('존재하지 않는 스터디입니다.', 'NOT_FOUND');
-  }
-
-  return parsedStudyId; // 파싱된 ID
-};
-
 // GET /studies/:studyId/emojis
 export const getAllEmojis = asyncHandler(async (req, res) => {
-  const { studyId } = req.params;
+  const { studyId } = emojiParamsSchema.parse(req.params);
 
-  const parsedStudyId = await isValidStudyId(studyId);
+  const study = await prisma.study.findUnique({
+    where: { id: studyId },
+  });
+
+  if (!study) throw new NotFoundError(`해당 studyId를 찾을 수 없습니다.`);
 
   const newEmojis = await prisma.emoji.findMany({
-    where: { studyId: parsedStudyId },
-    orderBy: { updatedAt: 'desc' },
+    where: { studyId: studyId },
+    orderBy: { count: 'desc' },
   });
 
   res.json({
@@ -41,27 +29,29 @@ export const getAllEmojis = asyncHandler(async (req, res) => {
 
 // PATCH /studies/:studyId/emojis
 export const upsertEmoji = asyncHandler(async (req, res) => {
-  const { studyId } = req.params;
+  const { studyId } = emojiParamsSchema.parse(req.params);
   const data = upsertEmojiSchema.parse(req.body);
   const { emoji } = data;
-
-  const parsedStudyId = await isValidStudyId(studyId);
 
   const newEmoji = await prisma.emoji.upsert({
     where: {
       // unique constraint
       studyId_emoji: {
         emoji,
-        studyId: parsedStudyId,
+        studyId,
       },
     },
     update: { count: { increment: 1 } },
     create: {
       emoji: emoji,
       count: 1,
-      studyId: parsedStudyId,
+      studyId,
     },
   });
 
-  res.json({ success: true, data: newEmoji });
+  const isCreated =
+    newEmoji.createdAt.getTime() === newEmoji.updatedAt.getTime();
+  const statusCode = isCreated ? 201 : 200;
+
+  res.status(statusCode).json({ success: true, data: newEmoji });
 });
