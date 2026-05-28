@@ -1,30 +1,27 @@
 import express from 'express';
+import {
+  createStudy,
+  deleteStudy,
+  getStudies,
+  getStudy,
+  updateStudy,
+} from '../controllers/study.controller.js';
 
 const router = express.Router();
 
 // GET /studies - 스터디 둘러보기/검색/정렬
-router.get('/', (req, res) => {
-  res.json({ todo: 'GET studies 구현 예정' });
-});
+router.get('/', getStudies);
 
 // POST /studies - 스터디 생성
-router.post('/', (req, res) => {
-  res.json({ todo: 'POST study 구현 예정' });
-});
+router.post('/', createStudy);
 
 // GET /studies/:id - 스터디 상세 조회 (최근 조회 / 비밀번호 검증 / 총 집중포인트)
-router.get('/:id', (req, res) => {
-  res.json({ todo: 'GET study detail 구현 예정' });
-});
+router.get('/:id', getStudy);
 
 // PATCH /studies/:id - 스터디 수정 (비밀번호 필요)
-router.patch('/:id', (req, res) => {
-  res.json({ todo: 'PATCH study 구현 예정' });
-});
+router.patch('/:id', updateStudy);
 
 // DELETE /studies/:id - 스터디 삭제 (비밀번호 필요)
-router.delete('/:id', (req, res) => {
-  res.json({ todo: 'DELETE study 구현 예정' });
-});
+router.delete('/:id', deleteStudy);
 
 export default router;
