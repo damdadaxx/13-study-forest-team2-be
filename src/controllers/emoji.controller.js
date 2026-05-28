@@ -44,7 +44,6 @@ export const upsertEmoji = asyncHandler(async (req, res) => {
     update: { count: { increment: 1 } },
     create: {
       emoji: emoji,
-      count: 1,
       studyId,
     },
   });
