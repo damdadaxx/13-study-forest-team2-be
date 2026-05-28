@@ -1,11 +1,13 @@
 import express from 'express';
+import {
+  getHabits,
+  toggleHabitCheck,
+} from '../controllers/habit.controller.js';
 
 const router = express.Router({ mergeParams: true });
 
 // GET /studies/:studyId/habits - 오늘의 습관 목록 조회
-router.get('/', (req, res) => {
-  res.json({ todo: 'GET habits 구현 예정', studyId: req.params.studyId });
-});
+router.get('/', getHabits);
 
 // POST /studies/:studyId/habits - 습관 생성
 router.post('/', (req, res) => {
@@ -13,9 +15,7 @@ router.post('/', (req, res) => {
 });
 
 // PATCH /studies/:studyId/habits/:habitId/check - 체크 토글
-router.patch('/:habitId/check', (req, res) => {
-  res.json({ todo: 'PATCH habit check 구현 예정' });
-});
+router.patch('/:habitId/check', toggleHabitCheck);
 
 // PATCH /studies/:studyId/habits/:habitId - 이름 수정
 router.patch('/:habitId', (req, res) => {
