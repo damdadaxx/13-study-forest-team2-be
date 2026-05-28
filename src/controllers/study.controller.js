@@ -57,9 +57,9 @@ export const getStudies = asyncHandler(async (req, res) => {
   const where = keyword
     ? {
         OR: [
-          { nickname: { contains: keyword } },
-          { title: { contains: keyword } },
-          { description: { contains: keyword } },
+          { nickname: { contains: keyword, mode: 'insensitive' } },
+          { title: { contains: keyword, mode: 'insensitive' } },
+          { description: { contains: keyword, mode: 'insensitive' } },
         ],
       }
     : {};
