@@ -82,7 +82,7 @@ POST {{baseUrl}}/studies/{{studyId}}/habits
 Content-Type: application/json
 
 {
-  "content": "백엔드 작업하기"
+  "content": "백엔드 수정하기"
 }
 
 ### 13. ❌ 습관 생성 - 이름 없음 400
