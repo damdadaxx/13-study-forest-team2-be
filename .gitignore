@@ -4,7 +4,7 @@ node_modules/
 # environment variables - .env.example만 깃에 올라감
 .env
 .env.*
-.env.example
+!.env.example
 
 # logs
 npm-debug.log*
