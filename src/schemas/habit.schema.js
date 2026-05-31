@@ -23,20 +23,11 @@ export const habitCheckParamsSchema = z.object({
   habitId: idField,
 });
 
-// POST /studies/:studyId/habits
-export const createHabitBodySchema = z.object({
+// POST /studies/:studyId/habits +PATCH /studies/:studyId/habits/:habitId
+export const habitContentSchema = z.object({
   content: z
     .string()
     .trim()
     .min(1, '습관 이름을 작성해주세요')
-    .max(20, '습관 이름은 최대 20자 입니다.'), // 최소 1자 최대 20자 제한
-});
-
-//PATCH /studies/:studyId/habits/:habitId
-export const updateHabitBodySchema = z.object({
-  content: z
-    .string()
-    .trim()
-    .min(1, '습관 이름을 작성해주세요.')
     .max(20, '습관 이름은 최대 20자 입니다.'), // 최소 1자 최대 20자 제한
 });

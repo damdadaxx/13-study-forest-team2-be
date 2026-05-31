@@ -6,8 +6,7 @@ import {
   checkHabitSchema,
   habitListParamsSchema,
   habitCheckParamsSchema,
-  createHabitBodySchema,
-  updateHabitBodySchema,
+  habitContentSchema,
 } from '../schemas/habit.schema.js';
 
 // GET /studies/:studyId/habits - 오늘의 습관 목록 + 체크 상태 조회
@@ -95,7 +94,7 @@ export const toggleHabitCheck = asyncHandler(async (req, res) => {
 // POST /studies/:studyId/habits - 습관 생성
 export const createHabit = asyncHandler(async (req, res) => {
   const { studyId } = habitListParamsSchema.parse(req.params);
-  const { content } = createHabitBodySchema.parse(req.body);
+  const { content } = habitContentSchema.parse(req.body);
 
   const study = await prisma.study.findUnique({ where: { id: studyId } });
   if (!study) throw new NotFoundError('스터디를 찾을 수 없습니다.');
@@ -124,7 +123,7 @@ export const createHabit = asyncHandler(async (req, res) => {
 // PATCH /studies/:studyId/habits/:habitId - 습관 이름 수정
 export const updateHabit = asyncHandler(async (req, res) => {
   const { studyId, habitId } = habitCheckParamsSchema.parse(req.params);
-  const { content } = updateHabitBodySchema.parse(req.body);
+  const { content } = habitContentSchema.parse(req.body);
 
   const habit = await prisma.habit.findFirst({
     where: { id: habitId, studyId, deletedAt: null },
