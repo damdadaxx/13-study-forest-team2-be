@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 app.use('/studies', studyRouter);
 app.use('/studies/:studyId/emojis', emojiRouter);
 app.use('/studies/:studyId/habits', habitRouter);
-app.use('/focus', focusRouter);
+app.use('/studies', focusRouter);
 app.use('/test', testRouter);
 
 export default app;
