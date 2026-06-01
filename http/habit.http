@@ -76,3 +76,98 @@ Content-Type: application/json
 {
     "isChecked": true
 }
+
+### 12. ✅ 습관 생성 - 성공 201
+POST {{baseUrl}}/studies/{{studyId}}/habits
+Content-Type: application/json
+
+{
+  "content": "백엔드 수정하기"
+}
+
+### 13. ❌ 습관 생성 - 이름 없음 400
+POST {{baseUrl}}/studies/{{studyId}}/habits
+Content-Type: application/json
+
+{
+  "content": ""
+}
+
+### 14. ❌ 습관 생성 - 이름 20자 초과 400
+POST {{baseUrl}}/studies/{{studyId}}/habits
+Content-Type: application/json
+
+{
+  "content": "일이삼사오육칠팔구십일이삼사오육칠팔구이십"
+}
+
+### 15. ❌ 습관 생성 - 중복 이름 409
+POST {{baseUrl}}/studies/{{studyId}}/habits
+Content-Type: application/json
+
+{
+  "content": "아침 운동"
+}
+
+### 16. ❌ 습관 생성 - 없는 스터디 404
+POST {{baseUrl}}/studies/{{errorId}}/habits
+Content-Type: application/json
+
+{
+  "content": "아침 운동"
+}
+
+### 17. ✅ 습관 이름 수정 - 성공 200
+PATCH {{baseUrl}}/studies/{{studyId}}/habits/{{habitId}}
+Content-Type: application/json
+
+{
+  "content": "빨래하기"
+}
+
+### 18. ❌ 습관 이름 수정 - 이름 없음 400
+PATCH {{baseUrl}}/studies/{{studyId}}/habits/{{habitId}}
+Content-Type: application/json
+
+{
+  "content": ""
+}
+
+### 19. ❌ 습관 이름 수정 - 없는 습관 404
+PATCH {{baseUrl}}/studies/{{studyId}}/habits/{{errorId}}
+Content-Type: application/json
+
+{
+  "content": "저녁 운동"
+}
+
+### 20. ❌ 습관 이름 수정 - 중복 이름 409
+PATCH {{baseUrl}}/studies/{{studyId}}/habits/{{habitId}}
+Content-Type: application/json
+
+{
+  "content": "물 2L 마시기"
+}
+
+### 21. ❌ 습관 이름 수정 - 다른 스터디 접근 404
+PATCH {{baseUrl}}/studies/2/habits/{{habitId}}
+Content-Type: application/json
+
+{
+  "content": "저녁 운동"
+}
+
+### 22. ✅ 습관 종료 - 성공 200
+DELETE {{baseUrl}}/studies/{{studyId}}/habits/{{habitId}}
+
+### 23. ❌ 습관 종료 - 없는 습관 404
+DELETE {{baseUrl}}/studies/{{studyId}}/habits/{{errorId}}
+
+### 24. ❌ 습관 종료 - 이미 종료된 습관 재삭제 404
+DELETE {{baseUrl}}/studies/{{studyId}}/habits/{{habitId}}
+
+### 25. ❌ 습관 종료 - 다른 스터디 접근 404
+DELETE {{baseUrl}}/studies/2/habits/{{habitId}}
+
+### 26. ✅ 목록 조회로 최종 확인
+GET {{baseUrl}}/studies/{{studyId}}/habits

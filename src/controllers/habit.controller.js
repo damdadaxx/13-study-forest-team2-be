@@ -1,11 +1,12 @@
 import prisma from '../lib/prisma.js';
 import asyncHandler from '../utils/asyncHandler.js';
-import { NotFoundError } from '../utils/errors.js';
+import { NotFoundError, ConflictError } from '../utils/errors.js';
 import { getTodayKst, toDateString } from '../utils/date.js';
 import {
   checkHabitSchema,
   habitListParamsSchema,
   habitCheckParamsSchema,
+  habitContentSchema,
 } from '../schemas/habit.schema.js';
 
 // GET /studies/:studyId/habits - 오늘의 습관 목록 + 체크 상태 조회
@@ -88,4 +89,73 @@ export const toggleHabitCheck = asyncHandler(async (req, res) => {
     },
     message: '습관 체크 상태가 업데이트되었습니다.',
   });
+});
+
+// POST /studies/:studyId/habits - 습관 생성
+export const createHabit = asyncHandler(async (req, res) => {
+  const { studyId } = habitListParamsSchema.parse(req.params);
+  const { content } = habitContentSchema.parse(req.body);
+
+  const study = await prisma.study.findUnique({ where: { id: studyId } });
+  if (!study) throw new NotFoundError('스터디를 찾을 수 없습니다.');
+
+  const duplicate = await prisma.habit.findFirst({
+    where: { studyId, content, deletedAt: null },
+  });
+  if (duplicate) throw new ConflictError('이미 등록된 습관입니다.');
+
+  const habit = await prisma.habit.create({
+    data: { content, studyId },
+  });
+
+  res.status(201).json({
+    success: true,
+    data: habit,
+    message: '습관 생성이 성공적으로 완료됐습니다!',
+  });
+});
+
+// PATCH /studies/:studyId/habits/:habitId - 습관 이름 수정
+export const updateHabit = asyncHandler(async (req, res) => {
+  const { studyId, habitId } = habitCheckParamsSchema.parse(req.params);
+  const { content } = habitContentSchema.parse(req.body);
+
+  const habit = await prisma.habit.findFirst({
+    where: { id: habitId, studyId, deletedAt: null },
+  });
+  if (!habit) throw new NotFoundError('해당 습관을 찾을 수 없습니다.');
+
+  const duplicate = await prisma.habit.findFirst({
+    where: { studyId, content, deletedAt: null, NOT: { id: habitId } },
+  });
+  if (duplicate) throw new ConflictError('이미 존재하는 습관 이름입니다.');
+
+  const updated = await prisma.habit.update({
+    where: { id: habitId },
+    data: { content },
+  });
+
+  res.json({
+    success: true,
+    data: updated,
+    message:
+      '습관 이름이 성공적으로 변경되었습니다. 과거 기록에도 반영되었습니다.',
+  });
+});
+
+// DELETE /studies/:studyId/habits/:habitId - 습관 종료 (soft delete)
+export const deleteHabit = asyncHandler(async (req, res) => {
+  const { studyId, habitId } = habitCheckParamsSchema.parse(req.params);
+
+  const habit = await prisma.habit.findFirst({
+    where: { id: habitId, studyId, deletedAt: null },
+  });
+  if (!habit) throw new NotFoundError('해당 습관을 찾을 수 없습니다.');
+
+  await prisma.habit.update({
+    where: { id: habitId },
+    data: { deletedAt: new Date() },
+  });
+
+  res.json({ success: true, message: '습관이 성공적으로 삭제됐습니다.' });
 });
