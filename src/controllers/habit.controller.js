@@ -1,6 +1,6 @@
 import prisma from '../lib/prisma.js';
 import asyncHandler from '../utils/asyncHandler.js';
-import { NotFoundError } from '../utils/errors.js';
+import { NotFoundErro, ConflictError } from '../utils/errors.js';
 import { getTodayKst, toDateString } from '../utils/date.js';
 import {
   checkHabitSchema,
@@ -102,12 +102,7 @@ export const createHabit = asyncHandler(async (req, res) => {
   const duplicate = await prisma.habit.findFirst({
     where: { studyId, content, deletedAt: null },
   });
-  if (duplicate) {
-    return res.status(409).json({
-      success: false,
-      error: { code: 'DUPLICATE_CONTENT', message: '이미 등록된 습관입니다.' },
-    });
-  }
+  if (duplicate) throw new ConflictError('이미 등록된 습관입니다.');
 
   const habit = await prisma.habit.create({
     data: { content, studyId },
@@ -133,15 +128,7 @@ export const updateHabit = asyncHandler(async (req, res) => {
   const duplicate = await prisma.habit.findFirst({
     where: { studyId, content, deletedAt: null, NOT: { id: habitId } },
   });
-  if (duplicate) {
-    return res.status(409).json({
-      success: false,
-      error: {
-        code: 'DUPLICATE_CONTENT',
-        message: '이미 존재하는 습관 이름입니다.',
-      },
-    });
-  }
+  if (duplicate) throw new ConflictError('이미 존재하는 습관 이름입니다.');
 
   const updated = await prisma.habit.update({
     where: { id: habitId },
