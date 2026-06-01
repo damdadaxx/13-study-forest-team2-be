@@ -1,6 +1,6 @@
 import prisma from '../lib/prisma.js';
 import asyncHandler from '../utils/asyncHandler.js';
-import { NotFoundErro, ConflictError } from '../utils/errors.js';
+import { NotFoundError, ConflictError } from '../utils/errors.js';
 import { getTodayKst, toDateString } from '../utils/date.js';
 import {
   checkHabitSchema,
