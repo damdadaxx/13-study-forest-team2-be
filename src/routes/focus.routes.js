@@ -1,20 +1,10 @@
 import express from 'express';
+import { createFocus } from '../controllers/focus.controller.js';
 
 const router = express.Router();
 
-// GET /focus - 오늘 집중 목록 조회
-router.get('/', (req, res) => {
-  res.json({ todo: 'GET focus 구현 예정' });
-});
-
-// GET /focus/:id - 집중 기록 상세 조회
-router.get('/:id', (req, res) => {
-  res.json({ todo: 'GET focus detail 구현 예정' });
-});
-
-// POST /focus - 집중 기록 생성
-router.post('/', (req, res) => {
-  res.json({ todo: 'POST focus 구현 예정' });
-});
+// params 라우트 작성 방식에 맞춰 :studyId를 직접 선언하였습니다.
+// POST /studies/:studyId/focus
+router.post('/:studyId/focus', createFocus);
 
 export default router;

@@ -1,0 +1,101 @@
+@baseUrl = http://localhost:3001
+@studyId = 20
+
+### 0. 서버 체크
+GET {{baseUrl}}/
+
+
+### 1. 스터디 상세 조회 - Focus 테스트 전 totalPoint 확인
+GET {{baseUrl}}/studies/{{studyId}}
+
+
+### 2. 집중 기록 생성 - 25분 완료
+POST {{baseUrl}}/studies/{{studyId}}/focus
+Content-Type: application/json
+
+{
+  "duration": 1500
+}
+
+
+### 3. 스터디 상세 조회 - totalPoint +3 확인
+GET {{baseUrl}}/studies/{{studyId}}
+
+
+### 4. 집중 기록 생성 - 35분
+POST {{baseUrl}}/studies/{{studyId}}/focus
+Content-Type: application/json
+
+{
+  "duration": 2100
+}
+
+
+### 5. 스터디 상세 조회 - totalPoint +4 추가 확인
+GET {{baseUrl}}/studies/{{studyId}}
+
+
+### 6. 집중 기록 생성 - 25분 미만
+POST {{baseUrl}}/studies/{{studyId}}/focus
+Content-Type: application/json
+
+{
+  "duration": 1499
+}
+
+
+### 7. 스터디 상세 조회 - totalPoint 그대로인지 확인
+GET {{baseUrl}}/studies/{{studyId}}
+
+
+### 8. 존재하지 않는 스터디
+POST {{baseUrl}}/studies/999999/focus
+Content-Type: application/json
+
+{
+  "duration": 1500
+}
+
+
+### 9. Zod 검증 - duration 타입 오류
+POST {{baseUrl}}/studies/{{studyId}}/focus
+Content-Type: application/json
+
+{
+  "duration": "1500"
+}
+
+
+### 10. Zod 검증 - duration 누락
+POST {{baseUrl}}/studies/{{studyId}}/focus
+Content-Type: application/json
+
+{
+}
+
+
+### 11. Zod 검증 - duration 음수일 때
+POST {{baseUrl}}/studies/{{studyId}}/focus
+Content-Type: application/json
+
+{
+  "duration": -10
+}
+
+
+### 12. Zod 검증 - studyId 타입 오류
+POST {{baseUrl}}/studies/abc/focus
+Content-Type: application/json
+
+{
+  "duration": 1500
+}
+
+
+### 13. Zod 검증 - studyId 음수일 때
+POST {{baseUrl}}/studies/-1/focus
+Content-Type: application/json
+
+{
+  "duration": 1500
+}
