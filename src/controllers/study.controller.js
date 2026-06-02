@@ -65,6 +65,10 @@ export const getStudies = asyncHandler(async (req, res) => {
     : {};
   const studies = await prisma.study.findMany({
     where,
+    include: {
+      habits: true,
+      emojis: true,
+    },
     take: limit + 1,
     skip: cursor ? 1 : 0,
     cursor: cursor ? { id: cursor } : undefined,
