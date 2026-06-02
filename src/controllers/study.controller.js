@@ -40,19 +40,19 @@ export const getStudies = asyncHandler(async (req, res) => {
   let orderBy;
   switch (sort) {
     case 'recent':
-      orderBy = { createdAt: 'desc' };
+      orderBy = [{ createdAt: 'desc' }, { id: 'desc' }];
       break;
     case 'oldest':
-      orderBy = { createdAt: 'asc' };
+      orderBy = [{ createdAt: 'asc' }, { id: 'asc' }];
       break;
     case 'pointDesc':
-      orderBy = { totalPoint: 'desc' };
+      orderBy = [{ totalPoint: 'desc' }, { id: 'desc' }];
       break;
     case 'pointAsc':
-      orderBy = { totalPoint: 'asc' };
+      orderBy = [{ totalPoint: 'asc' }, { id: 'asc' }];
       break;
     default:
-      orderBy = { createdAt: 'desc' };
+      orderBy = [{ createdAt: 'desc' }, { id: 'desc' }];
   }
   const where = keyword
     ? {
