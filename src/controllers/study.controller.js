@@ -49,7 +49,7 @@ export const getStudies = asyncHandler(async (req, res) => {
       orderBy = [{ totalPoint: 'desc' }, { id: 'desc' }];
       break;
     case 'pointAsc':
-      orderBy = [{ totalPoint: 'asc' }, { id: 'asc' }];
+      orderBy = [{ totalPoint: 'asc' }, { id: 'desc' }];
       break;
     default:
       orderBy = [{ createdAt: 'desc' }, { id: 'desc' }];
