@@ -41,7 +41,7 @@ export const studyBodySchema = z.object({
   description: z
     .string({ error: 'description은 필수입니다' })
     .min(1, 'description은 1자 이상이어야 합니다')
-    .max(100, 'description은 100자 이하여야 합니다'),
+    .max(500, 'description은 500자 이하여야 합니다'),
   background: z.enum(
     ['img1', 'img2', 'img3', 'img4', 'img5', 'img6', 'img7', 'img8'],
     "background는 'img1', 'img2', 'img3', 'img4','img5', 'img6', 'img7', 'img8' 중 하나여야 합니다",
@@ -67,7 +67,7 @@ export const updateStudySchema = z
     description: z
       .string()
       .min(1, 'description은 1자 이상이어야 합니다')
-      .max(100, 'description은 100자 이하여야 합니다')
+      .max(500, 'description은 500자 이하여야 합니다')
       .optional(),
     background: z
       .enum(
