@@ -107,7 +107,6 @@ export const decrementEmoji = asyncHandler(async (req, res) => {
     return {
       deleted: false,
       message: '이모지 카운트가 감소했습니다.',
-      data: updatedEmoji,
     };
   });
 
