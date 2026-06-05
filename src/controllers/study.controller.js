@@ -5,6 +5,7 @@ import {
   studyParamsSchema,
   studyQuerySchema,
   updateStudySchema,
+  verifyPasswordSchema,
 } from '../schemas/study.schema.js';
 import asyncHandler from '../utils/asyncHandler.js';
 import {
@@ -147,4 +148,15 @@ export const deleteStudy = asyncHandler(async (req, res) => {
     where: { id },
   });
   res.status(200).json({ success: true, message: '스터디 삭제 성공' });
+});
+
+export const verifyPassword = asyncHandler(async (req, res) => {
+  const { id } = studyParamsSchema.parse(req.params);
+  const { password } = verifyPasswordSchema.parse(req.body);
+
+  const study = await prisma.study.findUnique({ where: { id } });
+  if (!study) throw new NotFoundError();
+
+  const isValid = study.password === password;
+  res.status(200).json({ success: true, data: isValid });
 });
