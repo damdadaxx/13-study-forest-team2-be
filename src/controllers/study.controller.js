@@ -95,6 +95,9 @@ export const getStudy = asyncHandler(async (req, res) => {
     include: {
       habits: true,
       emojis: true,
+      include: {
+        habitRecords: true,
+      },
     },
   });
   if (!study) {
