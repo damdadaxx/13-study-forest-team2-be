@@ -25,6 +25,7 @@ export const createStudy = asyncHandler(async (req, res) => {
       background,
       password,
     },
+    omit: { password: true },
   });
   res
     .status(201)
@@ -66,6 +67,7 @@ export const getStudies = asyncHandler(async (req, res) => {
     : {};
   const studies = await prisma.study.findMany({
     where,
+    omit: { password: true },
     include: {
       habits: true,
       emojis: true,
@@ -89,6 +91,7 @@ export const getStudy = asyncHandler(async (req, res) => {
   const { id } = studyParamsSchema.parse(req.params);
   const study = await prisma.study.findUnique({
     where: { id },
+    omit: { password: true },
     include: {
       habits: true,
       emojis: true,
@@ -129,6 +132,7 @@ export const updateStudy = asyncHandler(async (req, res) => {
       totalPoint,
       password: newPassword,
     },
+    omit: { password: true },
   });
   res
     .status(200)
