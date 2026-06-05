@@ -101,3 +101,7 @@ export const deleteStudySchema = z.object({
     .min(8, 'password는 8자 이상이어야 합니다')
     .max(15, 'password는 15자 이하여야 합니다'),
 });
+
+export const verifyPasswordSchema = z.object({
+  password: z.string({ error: 'password는 필수입니다' }),
+});

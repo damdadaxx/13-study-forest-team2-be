@@ -5,6 +5,7 @@ import {
   getStudies,
   getStudy,
   updateStudy,
+  verifyPassword,
 } from '../controllers/study.controller.js';
 
 const router = express.Router();
@@ -23,5 +24,7 @@ router.patch('/:id', updateStudy);
 
 // DELETE /studies/:id - 스터디 삭제 (비밀번호 필요)
 router.delete('/:id', deleteStudy);
+
+router.post('/:id/verifyPassword', verifyPassword);
 
 export default router;
