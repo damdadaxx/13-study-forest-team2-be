@@ -1,20 +1,17 @@
 import express from 'express';
+import {
+  getAllEmojis,
+  incrementEmoji,
+  decrementEmoji,
+} from '../controllers/emoji.controller.js';
 
 const router = express.Router({ mergeParams: true });
 
-// GET /studies/:studyId/emojis - 이모지 목록
-router.get('/', (req, res) => {
-  res.json({ todo: 'GET emojis 구현 예정', studyId: req.params.studyId });
-});
-
-// POST /studies/:studyId/emojis - 이모지 생성
-router.post('/', (req, res) => {
-  res.json({ todo: 'POST emoji 구현 예정' });
-});
-
-// PATCH /studies/:studyId/emojis/:emojiId - 이모지 수정
-router.patch('/:emojiId', (req, res) => {
-  res.json({ todo: 'PATCH emoji 구현 예정' });
-});
+// GET /studies/:studyId/emojis - 이모지 목록 조회
+router.get('/', getAllEmojis);
+// POST /studies/:studyId/emojis - 이모지 추가 및 count 증가
+router.post('/', incrementEmoji);
+// DELETE /studies/:studyId/emojis - 이모지 제거 및 count 감소
+router.delete('/', decrementEmoji);
 
 export default router;

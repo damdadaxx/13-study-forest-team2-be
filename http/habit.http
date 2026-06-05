@@ -1,0 +1,173 @@
+@baseUrl = http://localhost:3001
+@studyId = 1
+@habitId = 1
+
+@errorId = 99999
+
+
+### 1. 오늘의 습관 목록 조회 (스터디 1) - 성공 200
+# 기대: data.date = KST 기준 오늘 (YYYY-MM-DD).
+#      habits = [{id, content, isChecked, createdAt}], 오늘 자 record 없으면 isChecked:false
+GET {{baseUrl}}/studies/{{studyId}}/habits
+
+### 2. 없는 스터디 조회 - 404 NOT_FOUND
+GET {{baseUrl}}/studies/{{errorId}}/habits
+
+### 3. 체크 ON (isChecked:true 전송) - 성공 200
+# 오늘 record 없으면 생성, 있으면 갱신. 응답 data = {id, habitId, date, isChecked}
+PATCH {{baseUrl}}/studies/{{studyId}}/habits/{{habitId}}/check
+Content-Type: application/json
+
+{
+    "isChecked": true
+}
+
+### 4. 체크 OFF (isChecked:false 전송) - 성공 200
+# 자동 반전이 아니라 "받은 값으로 설정" 임을 확인 (false 보내면 false)
+PATCH {{baseUrl}}/studies/{{studyId}}/habits/{{habitId}}/check
+Content-Type: application/json
+
+{
+    "isChecked": false
+}
+
+### 5. 토글 후 목록 재조회 - habit 1 의 isChecked 가 마지막 전송값(false)과 일치
+GET {{baseUrl}}/studies/{{studyId}}/habits
+
+### 6. Zod 검증 실패 - 바디에 isChecked 없음 -> 400 BAD_REQUEST
+PATCH {{baseUrl}}/studies/{{studyId}}/habits/{{habitId}}/check
+Content-Type: application/json
+
+{
+}
+
+### 7. Zod 검증 실패 - isChecked 타입 틀림(문자열) -> 400 BAD_REQUEST
+PATCH {{baseUrl}}/studies/{{studyId}}/habits/{{habitId}}/check
+Content-Type: application/json
+
+{
+    "isChecked": "yes"
+}
+
+### 8. 없는 습관 토글 - 404 NOT_FOUND
+PATCH {{baseUrl}}/studies/{{studyId}}/habits/{{errorId}}/check
+Content-Type: application/json
+
+{
+    "isChecked": true
+}
+
+### 9. 다른 스터디의 습관 ID로 토글 - 404 NOT_FOUND
+# (habit 1 은 study 1 소속이므로 study 2 경로로는 못 찾아야 함)
+PATCH {{baseUrl}}/studies/2/habits/{{habitId}}/check
+Content-Type: application/json
+
+{
+    "isChecked": true
+}
+
+### 10. 잘못된 studyId (숫자 아님) -> 400 BAD_REQUEST
+GET {{baseUrl}}/studies/abc/habits
+
+### 11. 없는 스터디로 체크 토글 -> 404 "스터디를 찾을 수 없습니다."
+PATCH {{baseUrl}}/studies/{{errorId}}/habits/{{habitId}}/check
+Content-Type: application/json
+
+{
+    "isChecked": true
+}
+
+### 12. ✅ 습관 생성 - 성공 201
+POST {{baseUrl}}/studies/{{studyId}}/habits
+Content-Type: application/json
+
+{
+  "content": "백엔드 수정하기"
+}
+
+### 13. ❌ 습관 생성 - 이름 없음 400
+POST {{baseUrl}}/studies/{{studyId}}/habits
+Content-Type: application/json
+
+{
+  "content": ""
+}
+
+### 14. ❌ 습관 생성 - 이름 20자 초과 400
+POST {{baseUrl}}/studies/{{studyId}}/habits
+Content-Type: application/json
+
+{
+  "content": "일이삼사오육칠팔구십일이삼사오육칠팔구이십"
+}
+
+### 15. ❌ 습관 생성 - 중복 이름 409
+POST {{baseUrl}}/studies/{{studyId}}/habits
+Content-Type: application/json
+
+{
+  "content": "아침 운동"
+}
+
+### 16. ❌ 습관 생성 - 없는 스터디 404
+POST {{baseUrl}}/studies/{{errorId}}/habits
+Content-Type: application/json
+
+{
+  "content": "아침 운동"
+}
+
+### 17. ✅ 습관 이름 수정 - 성공 200
+PATCH {{baseUrl}}/studies/{{studyId}}/habits/{{habitId}}
+Content-Type: application/json
+
+{
+  "content": "빨래하기"
+}
+
+### 18. ❌ 습관 이름 수정 - 이름 없음 400
+PATCH {{baseUrl}}/studies/{{studyId}}/habits/{{habitId}}
+Content-Type: application/json
+
+{
+  "content": ""
+}
+
+### 19. ❌ 습관 이름 수정 - 없는 습관 404
+PATCH {{baseUrl}}/studies/{{studyId}}/habits/{{errorId}}
+Content-Type: application/json
+
+{
+  "content": "저녁 운동"
+}
+
+### 20. ❌ 습관 이름 수정 - 중복 이름 409
+PATCH {{baseUrl}}/studies/{{studyId}}/habits/{{habitId}}
+Content-Type: application/json
+
+{
+  "content": "물 2L 마시기"
+}
+
+### 21. ❌ 습관 이름 수정 - 다른 스터디 접근 404
+PATCH {{baseUrl}}/studies/2/habits/{{habitId}}
+Content-Type: application/json
+
+{
+  "content": "저녁 운동"
+}
+
+### 22. ✅ 습관 종료 - 성공 200
+DELETE {{baseUrl}}/studies/{{studyId}}/habits/{{habitId}}
+
+### 23. ❌ 습관 종료 - 없는 습관 404
+DELETE {{baseUrl}}/studies/{{studyId}}/habits/{{errorId}}
+
+### 24. ❌ 습관 종료 - 이미 종료된 습관 재삭제 404
+DELETE {{baseUrl}}/studies/{{studyId}}/habits/{{habitId}}
+
+### 25. ❌ 습관 종료 - 다른 스터디 접근 404
+DELETE {{baseUrl}}/studies/2/habits/{{habitId}}
+
+### 26. ✅ 목록 조회로 최종 확인
+GET {{baseUrl}}/studies/{{studyId}}/habits

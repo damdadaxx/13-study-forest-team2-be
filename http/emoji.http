@@ -1,0 +1,29 @@
+### baseUrl 변수
+@baseUrl = http://localhost:3001
+
+### studyId 변수
+@studyId = 4
+
+### emojiId 변수
+@emojiId = 4
+
+### 이모지 ###
+
+### 전체 이모지 목록 조회
+GET {{baseUrl}}/studies/{{studyId}}/emojis
+
+### 이모지 추가 및 count 증가
+POST {{baseUrl}}/studies/{{studyId}}/emojis
+Content-Type: application/json
+
+{
+  "emoji": "🎁"
+}
+
+### 이모지 제거 및 count 감소
+DELETE {{baseUrl}}/studies/{{studyId}}/emojis
+Content-Type: application/json
+
+{
+  "emoji": "📚"
+}

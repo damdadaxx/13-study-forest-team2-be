@@ -1,8 +1,5 @@
-// This is your Prisma schema file,
+// This is your Prisma schema file
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
   provider = "prisma-client-js"
@@ -11,4 +8,91 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+// 1. study //
+
+model Study {
+  id          Int      @id @default(autoincrement())
+  nickname    String
+  title       String
+  description String
+  background  String
+  password    String
+  totalPoint  Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // 관계 설정
+  habits        Habit[]
+  focusSessions FocusSession[]
+  emojis        Emoji[]
+
+  @@map("studies")
+}
+
+// 2. Emoji //
+
+model Emoji {
+  id        Int      @id @default(autoincrement())
+  studyId   Int
+  emoji     String
+  count     Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // 관계 설정
+  study Study @relation(fields: [studyId], references: [id], onDelete: Cascade)
+
+  @@unique([studyId, emoji])
+  @@map("emojis")
+}
+
+// 3. habit //
+model Habit {
+  id        Int       @id @default(autoincrement())
+  studyId   Int
+  content   String
+  deletedAt DateTime? @db.Timestamp
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  // 관계 설정
+  study        Study         @relation(fields: [studyId], references: [id], onDelete: Cascade)
+  habitRecords HabitRecord[]
+
+  @@unique([studyId, content, deletedAt])
+  @@map("habits")
+}
+
+// 4. habit record //
+model HabitRecord {
+  id        Int      @id @default(autoincrement())
+  habitId   Int
+  isChecked Boolean  @default(false)
+  date      DateTime @db.Date
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // 관계 설정
+  habit Habit @relation(fields: [habitId], references: [id], onDelete: Cascade)
+
+  @@unique([habitId, date])
+  @@map("habit_records")
+}
+
+// 5. Focus Session //
+
+model FocusSession {
+  id          Int      @id @default(autoincrement())
+  studyId     Int
+  duration    Int
+  earnedPoint Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // 관계 설정
+  study Study @relation(fields: [studyId], references: [id], onDelete: Cascade)
+
+  @@map("focus_sessions")
 }
