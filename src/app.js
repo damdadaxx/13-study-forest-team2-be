@@ -9,7 +9,12 @@ import testRouter from './routes/test.routes.js';
 const app = express();
 
 // 미들웨어
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://13-study-forest-team2-fe.netlify.app',
+    credentials: true,
+  }),
+);
 app.use(express.json());
 
 // 헬스 체크
